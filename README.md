@@ -4,7 +4,6 @@
 * [General info](#general-info)
 * [Technologies](#technologies)
 * [Sources](#sources)
-* [Setup](#setup)
 
 ## General info
 Mail project contain 4 volumes:
@@ -17,13 +16,19 @@ Additionally we need set reverse dns. I created server DNS. Examples of configur
 
 Mail and database containers are in network mode. 
  
+## Technologies
+ * Postfix
+ * Dovecot 
+ * SpamAssassin
+ * MariaDB
+ * phpMyAdmin
+
 ## Sources 
+https://pl.terminal28.com/integracja-spf-policy-debianubuntu#Instalacja_spf-policy_pod_python8217a
 
-[https://pl.terminal28.com/integracja-spf-policy-debianubuntu#Instalacja_spf-policy_pod_python8217a]
+https://wiki.debian.org/opendkim
 
-[https://wiki.debian.org/opendkim]
-
-[https://www.digitalocean.com/community/tutorials/how-to-configure-a-mail-server-using-postfix-dovecot-mysql-and-spamassassin]
+https://www.digitalocean.com/community/tutorials/how-to-configure-a-mail-server-using-postfix-dovecot-mysql-and-spamassassin
 
 
 
