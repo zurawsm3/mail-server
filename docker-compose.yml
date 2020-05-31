@@ -1,0 +1,32 @@
+version: '3'
+services:
+  db:
+    image: jsurf/rpi-mariadb:latest
+    container_name: mail_db
+    network_mode: "host"
+    environment:
+      - MYSQL_ROOT_PASSWORD=mypassword
+      - MYSQL_DATABASE=servermail
+    volumes:
+      - ./mysql:/var/lib/mysql 
+  interface:
+    image: jackgruber/phpmyadmin:armhf
+    container_name: mail_phpmyadmin
+    ports: 
+      - "19870:80"
+    environment:
+      - PMA_HOST=172.17.0.1 # It depends on container IP
+  all:
+    build: ./build
+    image: mail_rpi
+    container_name: mail
+    network_mode: "host"
+    privileged: true
+    depends_on:
+      - db
+    volumes:
+      - ./privkey1.pem:/etc/ssl/private/privkey1.pem
+      - ./fullchain1.pem:/etc/ssl/certs/fullchain1.pem
+      - ./vhosts:/var/mail/vhosts
+    command: bash -c "./wait-for-it.sh db:3306"
+ 
